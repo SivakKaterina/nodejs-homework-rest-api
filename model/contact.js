@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, SchemaTypes } = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const contactSchema = new Schema({
   name: {
@@ -15,6 +16,10 @@ const contactSchema = new Schema({
     min: 1,
     max: 20,
   },
+  owner: {
+      type: SchemaTypes.ObjectId,
+      ref: 'user',
+    },
   favorite: {
     type: Boolean,
     default: false,
@@ -31,6 +36,6 @@ const contactSchema = new Schema({
     },
     toObject: {},
 });
-
+contactSchema.plugin(mongoosePaginate);
 const Contact = model('contact', contactSchema);
 module.exports = Contact;

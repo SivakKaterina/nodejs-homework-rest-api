@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
+const HttpCode = require('../../../helpers/constants');
 
 const validationCreateContacts = Joi.object({
  name: Joi.string()
@@ -38,7 +39,7 @@ const validate = async (schema, obj, next) => {
   }
   catch (err) {
     next({
-      status: 400,
+      status: HttpCode.BAD_REQUEST,
       message: err.message,
     })
   }
@@ -53,9 +54,11 @@ module.exports = {
   },
   updateStatusValidation: (req, res, next) => {
     if (Object.keys(req.body).length === 0) {
-      return res.status(400).json({
+      return res
+        .status(HttpCode.BAD_REQUEST)
+        .json({
         status: 'error',
-        code: 400,
+        code: HttpCode.BAD_REQUEST,
         message: 'Missing field favorite',
       });
     }
@@ -64,7 +67,7 @@ module.exports = {
   validateMongoId: (req, res, next) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.contactId)) {
       return next({
-        status: 400,
+        status: HttpCode.BAD_REQUEST,
         message: 'Invalid ObjectId',
       });
     }
