@@ -88,7 +88,6 @@ const current = async (req, res, next) => {
     next(error);
   }
 };
-console.log('avatars');
 const avatars = async (req, res, next) => {
   try {
     const id = req.user.id;
@@ -118,4 +117,4 @@ module.exports = {
   login,
   logout,
   avatars,
-}
+};
