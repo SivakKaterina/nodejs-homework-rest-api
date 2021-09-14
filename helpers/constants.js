@@ -16,4 +16,16 @@ const HttpCode = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
-module.exports = { HttpCode, Subscription };
+const limiterAPI = {
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 1000,
+  handler: (req, res, next) => {
+    return res.status(HttpCode.TOO_MANY_REQUESTS).json({
+      status: 'error',
+      code: HttpCode.TOO_MANY_REQUESTS,
+      message: 'Too many requests, please try again later',
+    });
+  },
+};
+
+module.exports = { HttpCode, Subscription,limiterAPI  };

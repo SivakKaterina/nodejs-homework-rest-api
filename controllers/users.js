@@ -88,7 +88,7 @@ const current = async (req, res, next) => {
     next(error);
   }
 };
-
+console.log('avatars');
 const avatars = async (req, res, next) => {
   try {
     const id = req.user.id;
@@ -98,8 +98,8 @@ const avatars = async (req, res, next) => {
       await fs.unlink(
         path.join(process.env.AVATAR_OF_USERS, req.user.avatarURL),
       );
-    } catch (e) {
-      console.log(e.message);
+    } catch (error) {
+      console.log(error.message);
     }
     await updateAvatar(id, avatarUrl);
     res.status(HttpCode.OK).json({
