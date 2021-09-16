@@ -17,7 +17,7 @@ const HttpCode = {
 };
 
 const limiterAPI = {
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000,
   max: 1000,
   handler: (req, res, next) => {
     return res.status(HttpCode.TOO_MANY_REQUESTS).json({
@@ -28,4 +28,4 @@ const limiterAPI = {
   },
 };
 
-module.exports = { HttpCode, Subscription,limiterAPI  };
+module.exports = { HttpCode, Subscription,limiterAPI };

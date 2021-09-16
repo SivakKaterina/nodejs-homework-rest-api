@@ -5,7 +5,7 @@ const createFolderIsNotExist = require('../helpers/create-folder');
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const UPLOAD_DIR = process.env.UPLOAD_DIR;
-AVATAR_OF_USERS = process.env.AVATAR_OF_USERS;
+const AVATAR_OF_USERS = process.env.AVATAR_OF_USERS;
 
 db.then(() => {
   app.listen(PORT, async () => {

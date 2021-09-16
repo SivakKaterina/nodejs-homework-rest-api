@@ -7,7 +7,6 @@ const rateLimit = require('express-rate-limit')
 const boolParser = require('express-query-boolean');
 const { limiterAPI } = require('./helpers/constants')
 require('dotenv').config();
-AVATAR_OF_USERS = process.env.AVATAR_OF_USERS;
 
 const app = express()
 
