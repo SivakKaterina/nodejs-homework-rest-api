@@ -8,7 +8,7 @@ const boolParser = require('express-query-boolean');
 const { limiterAPI } = require('./helpers/constants')
 require('dotenv').config();
 
-const app = express()
+const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 

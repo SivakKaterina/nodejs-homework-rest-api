@@ -3,6 +3,7 @@ const gr = require('gravatar');
 const { Subscription } = require('../helpers/constants');
 const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 8;
+const { v4: uuid } = require('uuid');
 
 const userSchema = new Schema(
   {
@@ -33,7 +34,13 @@ const userSchema = new Schema(
       default: function () {
         return gr.url(this.email, {s: '250'}, true)
       },
-  },
+    },
+    verify: { type: Boolean, default: false },
+    verifyToken: {
+      type: String,
+      require: [true, 'Verify token is required'],
+      default: uuid(),
+    },
   },
    {
     versionKey: false,
